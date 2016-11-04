@@ -1,5 +1,7 @@
 
 #include <GL/glew.h>
+
+
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <GL/glu.h>
@@ -22,6 +24,7 @@ using namespace std;
     std::vector< glm::vec3 > vertices;
 	std::vector< glm::vec2 > uvs;
 	std::vector< glm::vec3 > normals;
+
 
 bool loadOBJ(
     const char * path, 
@@ -149,6 +152,7 @@ void debug() {
 }
 
 void shader(){
+
     glPolygonMode(GL_FRONT,GL_FILL);
 }
 
