@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/test_shader.dir/test_shader.cpp.o  -o test_shader -rdynamic -lglut -lXmu -lXi -lGLU -lGL -lSM -lICE -lX11 -lXext 

@@ -1,0 +1,22 @@
+
+#include <GL/gl.h>
+#include <GL/glut.h>
+
+// set by the vertex shader
+varying vec2 tex_coord;
+// set by the C program
+uniform float green;
+
+
+
+
+
+int main(int argc, char** argv) {
+
+
+
+	 gl_FragColor = vec4( tex_coord.s, 0.8, tex_coord.t, 1.0 );
+
+
+    return 1;
+}
