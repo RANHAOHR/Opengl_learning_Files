@@ -1,13 +1,13 @@
 
 #include <GL/glew.h>
 
-
 #include <GL/gl.h>
 #include <GL/glut.h>
 #include <GL/glu.h>
 #include <stdlib.h>
 #include <math.h>
 #include <iostream>
+#include <fstream>
 
 #include <string>
 #include <cstring>
@@ -19,13 +19,80 @@
 #include <glm/vec3.hpp>
 #include <glm/vec2.hpp>
 
+
 using namespace std;
 
     std::vector< glm::vec3 > vertices;
 	std::vector< glm::vec2 > uvs;
 	std::vector< glm::vec3 > normals;
 
+    unsigned int vs, fs;    //shader source
+    unsigned int program;    //progfram
+/*load shaders in and initialize */
+void loadFile(const char* fn, string& str){
+    std::ifstream in(fn);
+    if(!in.is_open()){
+        cout<<"The file could noy=t be opened"<<endl;
+        return;
+    }
+    char temp[300];
+    while(!in.eof()){
+        in.getline(temp,300);
+        str+=temp;
+        str+='\n';
+    }
+}
 
+unsigned int loadShader(string& source, unsigned int mode){
+
+    unsigned int shader_id;
+    shader_id = glCreateShader(mode);
+
+    const char* csource = source.c_str();
+
+    glShaderSource(shader_id, 1, &csource, NULL);
+    glCompileShader(shader_id);
+    char error[1000];
+    glGetShaderInfoLog(shader_id, 1000, NULL, error);
+    cout<<"Compile status:"<<error<<endl;
+    return shader_id;
+}
+
+void initShader(const char* vname, const char* fname){
+    string source;
+    loadFile(vname,source);
+    vs = loadShader(source, GL_VERTEX_SHADER);
+    source = "";
+    loadFile(fname,source);
+    fs = loadShader(source, GL_FRAGMENT_SHADER);
+
+    program = glCreateProgram();
+    glAttachShader(program, vs);
+    glAttachShader(program, fs);
+
+    glLinkProgram(program);
+    glUseProgram(program);
+}
+
+void cleanShader(){
+    glDetachShader(program,vs);
+    glDetachShader(program,fs);
+    glDeleteShader(vs);
+    glDeleteShader(fs);
+    glDeleteShader(program);
+
+}
+
+void init(){
+    glClearColor(0,0,0,1);
+    glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective(50, 640.0/480.0,1,1000);
+    glMatrixMode(GL_MODELVIEW);
+    glEnable(GL_DEPTH_TEST);
+    initShader("vertex.vs","fragment.frag");
+}
+/*load obj in*/
 bool loadOBJ(
     const char * path, 
     std::vector<glm::vec3> & out_vertices,

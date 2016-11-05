@@ -42,7 +42,7 @@ add_executable(load_shader load_shader.cpp)
 # edit the arguments to reference the named node and named library within this package
 # target_link_library(example my_lib), put GLEW IN FRONT OF OTHERS
 target_link_libraries(load_main ${OpenGL_LIBRARIES} ${GLUT_LIBRARY} ${GLU_LIBRARY} )
-target_link_libraries(load_shader ${OpenGL_LIBRARIES} ${GLUT_LIBRARY} ${GLU_LIBRARY} )
+target_link_libraries(load_shader ${OpenGL_LIBRARIES} ${GLEW_LIBRARY} ${GLUT_LIBRARY} ${GLU_LIBRARY} )
 
 #target_link_libraries(loadfeature ${OpenGL_LIBRARIES} ${GLEW_LIBRARY} ${GLUT_LIBRARY} ${GLU_LIBRARY})
 

@@ -81,6 +81,7 @@ load_shader_EXTERNAL_OBJECTS =
 
 load_shader: CMakeFiles/load_shader.dir/load_shader.cpp.o
 load_shader: CMakeFiles/load_shader.dir/build.make
+load_shader: /usr/lib/x86_64-linux-gnu/libGLEW.so
 load_shader: /usr/lib/x86_64-linux-gnu/libglut.so
 load_shader: /usr/lib/x86_64-linux-gnu/libXmu.so
 load_shader: /usr/lib/x86_64-linux-gnu/libXi.so
