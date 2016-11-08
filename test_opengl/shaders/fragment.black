@@ -1,0 +1,23 @@
+in float gDist;
+in vec3 gSpine;
+out vec4 FragColor;
+uniform float HalfWidth;
+uniform sampler2D DepthSampler;
+uniform vec2 Size;
+
+void main()
+{
+    vec2 texCoord = (gSpine.xy + 1.0) / 2.0;
+    float depth = texture2D(DepthSampler, texCoord).r;
+    if (depth < gl_FragCoord.z)
+        discard;
+
+    float alpha = 1.0;
+    float d = abs(gDist);
+    float tipLength = 2.0 * fwidth(d);
+    if (d > HalfWidth - tipLength)
+        alpha = 1.0 - (d - HalfWidth + tipLength) / tipLength;
+
+    FragColor = vec4(0, 0, 0, alpha);
+}
+
