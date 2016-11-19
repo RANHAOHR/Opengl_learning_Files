@@ -120,7 +120,8 @@ bool loadOBJ(
 void debug() {
     
  
-    bool res = loadOBJ("/home/deeplearning/ros_ws/src/test_opengl/tool_parts/new_cylin.obj", vertices, uvs, normals);
+    //bool res = loadOBJ("/home/ranhao/ros_ws/src/Tool_tracking/tooltrack/tool_parts/new_cylin_add.obj", vertices, uvs, normals);
+    bool res = loadOBJ("/home/ranhao/ros_ws/src/test_opengl/tool_parts/new_ellipse_face.obj", vertices, uvs, normals);
     //bool res = loadOBJ("ellipse.obj", vertices);
     
     puts("VERTEX______________________________________________________");
@@ -180,17 +181,17 @@ void debug() {
 
 
 /*find the cylinder*/
-    int count = 0;
-    for (int i = 0; i < vertices.size(); ++i)
-    {
-    	if (vertices[i].y > 7.874)
-    	{
-    		cout<< "i is" << i <<endl;
-    		count = count + 1;
-    	}
-    }
-    cout<<"count is "<< count << endl;
-    cout<<"finish debug"<<endl; 
+    // int count = 0;
+    // for (int i = 0; i < vertices.size(); ++i)
+    // {
+    // 	if (vertices[i].y > 7.874)
+    // 	{
+    // 		cout<< "i is" << i <<endl;
+    // 		count = count + 1;
+    // 	}
+    // }
+    // cout<<"count is "<< count << endl;
+    // cout<<"finish debug"<<endl; 
 }
 
 int main(int argc, char** argv) {
